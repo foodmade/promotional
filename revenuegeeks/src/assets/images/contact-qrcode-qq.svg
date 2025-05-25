@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- 二维码背景 -->
+  <rect x="0" y="0" width="200" height="200" fill="white"/>
+  
+  <!-- 二维码图案模拟 - 实际应用中应替换为真实二维码 -->
+  <g fill="#000000">
+    <!-- 定位图案 - 左上角 -->
+    <rect x="20" y="20" width="30" height="30" />
+    <rect x="25" y="25" width="20" height="20" fill="white" />
+    <rect x="30" y="30" width="10" height="10" />
+    
+    <!-- 定位图案 - 右上角 -->
+    <rect x="150" y="20" width="30" height="30" />
+    <rect x="155" y="25" width="20" height="20" fill="white" />
+    <rect x="160" y="30" width="10" height="10" />
+    
+    <!-- 定位图案 - 左下角 -->
+    <rect x="20" y="150" width="30" height="30" />
+    <rect x="25" y="155" width="20" height="20" fill="white" />
+    <rect x="30" y="160" width="10" height="10" />
+    
+    <!-- 随机二维码数据点 - 与第一个稍有不同 -->
+    <rect x="70" y="40" width="10" height="10" />
+    <rect x="80" y="30" width="10" height="10" />
+    <rect x="110" y="30" width="10" height="10" />
+    <rect x="40" y="50" width="10" height="10" />
+    <rect x="60" y="60" width="10" height="10" />
+    <rect x="80" y="60" width="10" height="10" />
+    <rect x="120" y="60" width="10" height="10" />
+    <rect x="140" y="50" width="10" height="10" />
+    <rect x="50" y="70" width="10" height="10" />
+    <rect x="80" y="70" width="10" height="10" />
+    <rect x="110" y="70" width="10" height="10" />
+    <rect x="40" y="80" width="10" height="10" />
+    <rect x="70" y="80" width="10" height="10" />
+    <rect x="90" y="80" width="10" height="10" />
+    <rect x="120" y="80" width="10" height="10" />
+    <rect x="150" y="80" width="10" height="10" />
+    <rect x="40" y="90" width="10" height="10" />
+    <rect x="80" y="90" width="10" height="10" />
+    <rect x="120" y="90" width="10" height="10" />
+    <rect x="140" y="90" width="10" height="10" />
+    <rect x="50" y="100" width="10" height="10" />
+    <rect x="80" y="100" width="10" height="10" />
+    <rect x="110" y="100" width="10" height="10" />
+    <rect x="130" y="100" width="10" height="10" />
+    <rect x="40" y="110" width="10" height="10" />
+    <rect x="70" y="110" width="10" height="10" />
+    <rect x="100" y="110" width="10" height="10" />
+    <rect x="130" y="110" width="10" height="10" />
+    <rect x="60" y="120" width="10" height="10" />
+    <rect x="90" y="120" width="10" height="10" />
+    <rect x="120" y="120" width="10" height="10" />
+    <rect x="150" y="120" width="10" height="10" />
+    <rect x="50" y="130" width="10" height="10" />
+    <rect x="80" y="130" width="10" height="10" />
+    <rect x="130" y="130" width="10" height="10" />
+    <rect x="150" y="130" width="10" height="10" />
+    <rect x="40" y="140" width="10" height="10" />
+    <rect x="70" y="140" width="10" height="10" />
+    <rect x="100" y="140" width="10" height="10" />
+    <rect x="130" y="140" width="10" height="10" />
+    <rect x="70" y="160" width="10" height="10" />
+    <rect x="100" y="160" width="10" height="10" />
+    <rect x="120" y="160" width="10" height="10" />
+    <rect x="140" y="160" width="10" height="10" />
+  </g>
+  
+  <!-- Logo (可选) -->
+  <circle cx="100" cy="100" r="15" fill="white"/>
+  <text x="89" y="105" font-family="Arial" font-size="16" font-weight="bold">QQ</text>
+</svg> 

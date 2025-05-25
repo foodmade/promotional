@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seller66.admin.mapper.BrandsMapper">
+  <resultMap id="BaseResultMap" type="com.seller66.admin.entity.Brands">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="slug" jdbcType="VARCHAR" property="slug" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="rating" jdbcType="INTEGER" property="rating" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+
+  <select id="getAllBransList" resultMap="BaseResultMap">
+    SELECT * FROM brands
+    </select>
+</mapper>
