@@ -21,6 +21,6 @@ import java.util.List;
 public class ExclusiveOffersBiz extends BaseBiz<ExclusiveOffersMapper, ExclusiveOffers> {
 
     public List<ExclusiveOffersDTO> getExclusiveOffersList() {
-        return this.mapper.getAll();
+        return this.mapper.getExclusiveOffersList();
     }
 }

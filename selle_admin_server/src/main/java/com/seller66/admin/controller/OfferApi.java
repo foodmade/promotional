@@ -22,8 +22,8 @@ import java.util.Date;
 public class OfferApi extends BaseController<OfferBiz, Offer> {
 
     @GetMapping("/getList")
-    public CommonResultList<OfferDTO> getList(OfferSearchVo offerSearchVo) {
-        return baseBiz.getOfferList(offerSearchVo);
+    public CommonResultList<OfferDTO> getList() {
+        return baseBiz.getOfferList();
     }
 
     @PostMapping("/update")

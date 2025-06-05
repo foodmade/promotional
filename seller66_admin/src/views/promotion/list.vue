@@ -62,10 +62,9 @@ export default {
             const params = {
                 pageNum: this.page.pageNum,
                 pageSize: this.page.pageSize,
-                ...this.search
             }
             const api = ApiFactory.getPromotionPopupApi();
-            const res = await api.getList(params)
+            const res = await api.getList()
             console.log(res)
             if (res.isSuccess()) {
                 this.list = res.data

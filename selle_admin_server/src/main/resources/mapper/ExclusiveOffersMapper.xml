@@ -11,7 +11,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
 
-  <select id="getAll" resultType="com.seller66.admin.dto.ExclusiveOffersDTO">
+  <select id="getExclusiveOffersList" resultType="com.seller66.admin.dto.ExclusiveOffersDTO">
     SELECT * FROM exclusive_offers ORDER BY create_time DESC
     </select>
 </mapper>

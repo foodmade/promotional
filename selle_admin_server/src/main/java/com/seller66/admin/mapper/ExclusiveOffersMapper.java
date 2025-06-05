@@ -17,5 +17,5 @@ import java.util.List;
 @Repository
 public interface ExclusiveOffersMapper extends BaseMapper<ExclusiveOffers> {
 
-    List<ExclusiveOffersDTO> getAll();
+    List<ExclusiveOffersDTO> getExclusiveOffersList();
 }

@@ -52,10 +52,7 @@ export default {
   },
   methods: {
     async fetchList() {
-      const res = await ApiFactory.getExclusiveOfferApi().getList({
-        pageNum: this.page.pageNum,
-        pageSize: this.page.pageSize
-      })
+      const res = await ApiFactory.getExclusiveOfferApi().getList()
       if (res.isSuccess()) {
         this.list = res.data
         this.page.total = res.total
