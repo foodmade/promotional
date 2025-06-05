@@ -219,7 +219,7 @@ export default {
     async fetchLogo() {
       try {
         const res = await siteInfoApi.getSiteLogo();
-        this.logoUrl = res.configValue;
+        this.logoUrl = res;
       } catch (e) {
         this.logoUrl = '';
       }

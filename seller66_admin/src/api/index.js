@@ -10,6 +10,8 @@ import BannerApi from './banner';
 import SupportApi from './support';
 import PromotionPopupApi from './promotionPopup';
 import ExclusiveOfferApi from './exclusiveOffer';
+import SiteInfoApi from './siteInfo';
+import MenuApi from './menu';
 
 /**
  * API工厂类，用于管理不同的API实例
@@ -127,6 +129,20 @@ class ApiFactory {
       this.apiInstances.set('exclusiveOffer', new ExclusiveOfferApi());
     }
     return this.apiInstances.get('exclusiveOffer');
+  }
+
+  static getSiteInfoApi() {
+    if (!this.apiInstances.has('siteInfo')) {
+      this.apiInstances.set('siteInfo', new SiteInfoApi());
+    }
+    return this.apiInstances.get('siteInfo');
+  }
+
+  static getMenuApi() {
+    if (!this.apiInstances.has('menu')) {
+      this.apiInstances.set('menu', new MenuApi());
+    }
+    return this.apiInstances.get('menu');
   }
 
   /**

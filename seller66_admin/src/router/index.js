@@ -253,27 +253,27 @@ export const constantRoutes = [
   //   ]
   // },
   // 系统设置
-  // {
-  //   path: '/system',
-  //   component: Layout,
-  //   redirect: '/system/setting',
-  //   name: 'System',
-  //   meta: { title: '系统设置', icon: 'Setting' },
-  //   children: [
-  //     {
-  //       path: 'setting',
-  //       component: () => import('../views/system/setting.vue'),
-  //       name: 'SystemSetting',
-  //       meta: { title: '网站设置', icon: 'Tools' }
-  //     },
-  //     {
-  //       path: 'about',
-  //       component: () => import('../views/system/about.vue'),
-  //       name: 'About',
-  //       meta: { title: '关于我们', icon: 'InfoFilled' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/setting',
+    name: 'System',
+    meta: { title: '系统设置', icon: 'Setting' },
+    children: [
+      {
+        path: 'setting',
+        component: () => import('../views/system/setting.vue'),
+        name: 'SystemSetting',
+        meta: { title: '基本设置', icon: 'Setting' }
+      },
+      {
+        path: 'menu',
+        component: () => import('../views/system/menu.vue'),
+        name: 'MenuManager',
+        meta: { title: '菜单管理', icon: 'Menu' }
+      }
+    ]
+  },
   // 工具排行榜
   // 促销弹窗管理
   {

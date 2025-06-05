@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seller66.admin.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.seller66.admin.entity.Menu">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="external" jdbcType="BIT" property="external" />
+    <result column="mobile_divider" jdbcType="BIT" property="mobileDivider" />
+    <result column="visible" jdbcType="BIT" property="visible" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="subtitle" jdbcType="VARCHAR" property="subtitle" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+</mapper>

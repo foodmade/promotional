@@ -2,7 +2,7 @@
   <footer>
     <div class="footer-container">
       <div>
-        <span class="footer-logo">Seller66<span>Tools</span></span>
+        <span class="footer-logo">sellertools<span>86</span></span>
         <p class="footer-about">{{ $t('footer.about') }}</p>
         <div class="social-links">
           <a href="#"><i class="el-icon-share"></i></a>
@@ -15,13 +15,11 @@
       <div>
         <h4 class="footer-heading">{{ $t('footer.navigation') }}</h4>
         <ul class="footer-links">
-          <template v-for="(item, index) in navigationConfig">
-            <li :key="index">
-              <router-link :to="item.path">
-                {{ $t(item.name) }}
-              </router-link>
-            </li>
-          </template>
+          <li v-for="(item, index) in navigationConfig" :key="index">
+            <router-link :to="item.path">
+              {{ $t(item.name) }}
+            </router-link>
+          </li>
         </ul>
       </div>
       
@@ -52,7 +50,7 @@
         </ul>
       </div>
       
-      <div>
+      <!-- <div>
         <h4 class="footer-heading">{{ $t('footer.subscribe') }}</h4>
         <p style="opacity: 0.8; margin-bottom: 15px;">{{ $t('footer.subscribeText') }}</p>
         <el-form @submit.native.prevent="handleSubscribe">
@@ -70,11 +68,11 @@
             {{ $t('footer.subscribeButton') }}
           </el-button>
         </el-form>
-      </div>
+      </div> -->
     </div>
     
     <div class="footer-bottom">
-      <p>{{ $t('footer.copyright') }}</p>
+      <p>{{ $t('footer.copyright') }}<span v-if="icp"> | ICP备案号：{{ icp }}</span></p>
     </div>
   </footer>
 </template>
@@ -82,6 +80,7 @@
 <script>
 import navigationConfig from '@/config/navigation';
 import { companyLinks, legalLinks, sitemapLinks } from '@/config/footerLinks';
+import siteInfo from '@/api/modules/siteInfo';
 
 export default {
   name: 'AppFooter',
@@ -92,7 +91,8 @@ export default {
       navigationConfig,
       companyLinks,
       legalLinks,
-      sitemapLinks
+      sitemapLinks,
+      icp: ''
     }
   },
   methods: {
@@ -111,6 +111,11 @@ export default {
       this.subscribeName = ''
       this.subscribeEmail = ''
     }
+  },
+  mounted() {
+    siteInfo.getIcp().then(icp => {
+      this.icp = icp || '';
+    });
   }
 }
 </script>

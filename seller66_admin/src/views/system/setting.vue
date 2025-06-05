@@ -25,7 +25,6 @@
           <el-form-item label="网站Logo">
             <el-upload
               class="avatar-uploader"
-              action="#"
               :show-file-list="false"
               :auto-upload="false"
               :on-change="handleLogoChange"
@@ -34,19 +33,6 @@
               <el-icon v-else class="avatar-uploader-icon"><plus /></el-icon>
             </el-upload>
             <div class="upload-tip">建议尺寸：120*120px，支持JPG、PNG格式</div>
-          </el-form-item>
-          <el-form-item label="网站Favicon">
-            <el-upload
-              class="avatar-uploader"
-              action="#"
-              :show-file-list="false"
-              :auto-upload="false"
-              :on-change="handleFaviconChange"
-            >
-              <img v-if="basicForm.faviconUrl" :src="basicForm.faviconUrl" class="avatar" />
-              <el-icon v-else class="avatar-uploader-icon"><plus /></el-icon>
-            </el-upload>
-            <div class="upload-tip">建议尺寸：32*32px，支持ICO、PNG格式</div>
           </el-form-item>
           <el-form-item label="备案信息">
             <el-input v-model="basicForm.icp" placeholder="请输入备案信息，例如：京ICP备12345678号" />
@@ -57,7 +43,7 @@
         </el-form>
       </el-tab-pane>
 
-      <el-tab-pane label="评论设置" name="comment">
+      <!-- <el-tab-pane label="评论设置" name="comment">
         <el-form
           ref="commentFormRef"
           :model="commentForm"
@@ -80,9 +66,9 @@
             <el-button type="primary" @click="saveCommentSettings">保存设置</el-button>
           </el-form-item>
         </el-form>
-      </el-tab-pane>
+      </el-tab-pane> -->
 
-      <el-tab-pane label="邮件设置" name="email">
+      <!-- <el-tab-pane label="邮件设置" name="email">
         <el-form
           ref="emailFormRef"
           :model="emailForm"
@@ -109,129 +95,91 @@
             <el-button @click="testEmailSettings">测试连接</el-button>
           </el-form-item>
         </el-form>
-      </el-tab-pane>
+      </el-tab-pane> -->
     </el-tabs>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
+import ApiFactory from '@/api'
 
 export default {
   name: 'SystemSetting',
-  setup() {
-    const activeName = ref('basic')
-    
-    // 基本设置表单
-    const basicFormRef = ref(null)
-    const basicForm = ref({
-      siteName: '我的博客',
-      siteDescription: '这是一个基于 Vue 3 + Element Plus 的博客管理系统',
-      siteKeywords: '博客,Vue3,Element Plus,JavaScript',
-      logoUrl: 'https://element-plus.org/images/element-plus-logo.svg',
-      faviconUrl: 'https://element-plus.org/images/element-plus-logo-small.svg',
-      icp: '京ICP备12345678号'
-    })
-    
-    // 评论设置表单
-    const commentFormRef = ref(null)
-    const commentForm = ref({
-      enableComment: true,
-      reviewComment: true,
-      commentPerPage: 10,
-      commentMaxLength: 500
-    })
-    
-    // 邮件设置表单
-    const emailFormRef = ref(null)
-    const emailForm = ref({
-      smtpServer: 'smtp.example.com',
-      smtpPort: '465',
-      smtpUser: 'user@example.com',
-      smtpPassword: '',
-      sender: '博客管理员'
-    })
-    
-    // 上传Logo
-    const handleLogoChange = (file) => {
-      const reader = new FileReader()
-      reader.readAsDataURL(file.raw)
-      reader.onload = () => {
-        basicForm.value.logoUrl = reader.result
-      }
-    }
-    
-    // 上传Favicon
-    const handleFaviconChange = (file) => {
-      const reader = new FileReader()
-      reader.readAsDataURL(file.raw)
-      reader.onload = () => {
-        basicForm.value.faviconUrl = reader.result
-      }
-    }
-    
-    // 保存基本设置
-    const saveBasicSettings = () => {
-      // 模拟API请求
-      setTimeout(() => {
-        ElMessage({
-          message: '基本设置保存成功',
-          type: 'success'
-        })
-      }, 500)
-    }
-    
-    // 保存评论设置
-    const saveCommentSettings = () => {
-      // 模拟API请求
-      setTimeout(() => {
-        ElMessage({
-          message: '评论设置保存成功',
-          type: 'success'
-        })
-      }, 500)
-    }
-    
-    // 保存邮件设置
-    const saveEmailSettings = () => {
-      // 模拟API请求
-      setTimeout(() => {
-        ElMessage({
-          message: '邮件设置保存成功',
-          type: 'success'
-        })
-      }, 500)
-    }
-    
-    // 测试邮件设置
-    const testEmailSettings = () => {
-      // 模拟API请求
-      setTimeout(() => {
-        ElMessage({
-          message: '邮件测试连接成功',
-          type: 'success'
-        })
-      }, 500)
-    }
-    
+  data() {
     return {
-      activeName,
-      basicFormRef,
-      basicForm,
-      commentFormRef,
-      commentForm,
-      emailFormRef,
-      emailForm,
-      Plus,
-      handleLogoChange,
-      handleFaviconChange,
-      saveBasicSettings,
-      saveCommentSettings,
-      saveEmailSettings,
-      testEmailSettings
+      activeName: 'basic',
+      // 基本设置表单
+      basicFormRef: null,
+      basicForm: {
+        id: '',
+        siteName: '',
+        siteDescription: '',
+        siteKeywords: '',
+        logoUrl: '',
+        icp: ''
+      },
+      // 评论设置表单
+      commentFormRef: null,
+      commentForm: {
+        enableComment: true,
+        reviewComment: true,
+        commentPerPage: 10,
+        commentMaxLength: 500
+      },
+      // 邮件设置表单
+      emailFormRef: null,
+      emailForm: {
+        smtpServer: 'smtp.example.com',
+        smtpPort: '465',
+        smtpUser: 'user@example.com',
+        smtpPassword: '',
+        sender: '博客管理员'
+      }
     }
+  },
+  methods: {
+    async handleLogoChange(file) {
+      const api = ApiFactory.getUploadApi();
+      const res = await api.uploadImage(file.raw);
+      if (res.isSuccess() && res.data) {
+        this.basicForm.logoUrl = res.data.url;
+        ElMessage.success('Logo上传成功');
+      } else {
+        ElMessage.error(res.message || 'Logo上传失败');
+      }
+    },
+    saveBasicSettings() {
+      // 这里假设有一个API方法ApiFactory.getSettingApi().saveSettings(formArr)
+      const api = ApiFactory.getSiteInfoApi();
+      if (api && api.updateSiteInfo) {
+        api.updateSiteInfo(this.basicForm).then(res => {
+          if (res.isSuccess && res.isSuccess()) {
+            ElMessage.success('基本设置保存成功');
+          } else {
+            ElMessage.error(res.message || '保存失败');
+          }
+        }).catch(() => {
+          ElMessage.error('保存失败');
+        });
+      } else {
+        // 没有API时仅做本地提示
+        ElMessage.success('基本设置保存成功（模拟）');
+      }
+    }
+  },
+  components: {
+    Plus
+  },
+  mounted() {
+    // 页面加载时获取站点配置信息
+    const api = ApiFactory.getSiteInfoApi();
+    api.getSiteInfo().then(res => {
+      if (res.isSuccess && res.isSuccess()) {
+        this.basicForm = res.data;
+      }
+    });
   }
 }
 </script>

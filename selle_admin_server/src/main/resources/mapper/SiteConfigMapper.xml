@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seller66.admin.mapper.SiteConfigMapper">
+  <resultMap id="BaseResultMap" type="com.seller66.admin.entity.SiteConfig">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="site_name" jdbcType="VARCHAR" property="siteName" />
+    <result column="site_keywords" jdbcType="VARCHAR" property="siteKeywords" />
+    <result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
+    <result column="icp" jdbcType="VARCHAR" property="icp" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="site_description" jdbcType="LONGVARCHAR" property="siteDescription" />
+  </resultMap>
+
+  <select id="selectLastOne" resultMap="BaseResultMap">
+    SELECT * FROM site_config LIMIT 1
+  </select>
+</mapper>

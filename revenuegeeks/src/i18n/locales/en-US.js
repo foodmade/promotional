@@ -15,7 +15,7 @@ export default {
   },
   hero: {
     title: 'Discover the Best E-commerce Tools',
-    subtitle: 'Seller66Tools provides expert guidance to help you compare and choose the right solutions for your business',
+    subtitle: 'sellertools86 provides expert guidance to help you compare and choose the right solutions for your business',
     searchPlaceholder: 'Search for tools, coupons, or guides...',
     searchButton: 'Search'
   },
@@ -99,7 +99,7 @@ export default {
   },
   team: {
     title: 'Our Team',
-    subtitle: 'The professionals behind Seller66Tools',
+    subtitle: 'The professionals behind sellertools86',
     roles: {
       cofounder: 'Co-founder',
       editor: 'Chief Editor',
@@ -107,7 +107,7 @@ export default {
     }
   },
   footer: {
-    about: 'Our mission is to make Seller66Tools a trusted resource for anyone navigating the e-commerce world, providing honest and valuable guidance.',
+    about: 'Our mission is to make sellertools86 a trusted resource for anyone navigating the e-commerce world, providing honest and valuable guidance.',
     navigation: 'Navigation',
     legal: 'Legal',
     subscribe: 'Subscribe to Us',
@@ -115,7 +115,7 @@ export default {
     namePlaceholder: 'Your Name',
     emailPlaceholder: 'Your Email',
     subscribeButton: 'Subscribe',
-    copyright: '© 2025 Seller66Tools | All rights reserved',
+    copyright: '© 2025 sellertools86 | All rights reserved',
     aboutUs: 'About us',
     contactUs: 'Contact Us',
     careers: 'Careers',
@@ -136,9 +136,9 @@ export default {
     aboutUs: {
       title: 'About Us',
       subtitle: 'Discover who we are and our mission to help e-commerce sellers succeed',
-      intro: 'Seller66Tools was founded with a clear mission: to help e-commerce entrepreneurs navigate the complex landscape of online selling tools and strategies.',
+      intro: 'sellertools86 was founded with a clear mission: to help e-commerce entrepreneurs navigate the complex landscape of online selling tools and strategies.',
       storyTitle: 'Our Story',
-      storyContent: 'Founded in 2020 by a team of e-commerce experts and former Amazon sellers, Seller66Tools emerged from our own frustrations with finding reliable information about seller tools. We spent thousands of dollars and countless hours testing different solutions, often with disappointing results. We created Seller66Tools to share our experiences and help others avoid the same costly mistakes we made.',
+      storyContent: 'Founded in 2020 by a team of e-commerce experts and former Amazon sellers, sellertools86 emerged from our own frustrations with finding reliable information about seller tools. We spent thousands of dollars and countless hours testing different solutions, often with disappointing results. We created sellertools86 to share our experiences and help others avoid the same costly mistakes we made.',
       missionTitle: 'Our Mission',
       missionContent: 'Our mission is to provide honest, detailed, and actionable information about e-commerce tools and strategies. We believe in transparency and integrity in our reviews and comparisons. Every tool we recommend has been thoroughly tested by our team in real-world selling scenarios.',
       valuesTitle: 'Our Values',
@@ -156,11 +156,11 @@ export default {
       title: 'Contact Us',
       subtitle: 'Have questions or feedback? We\'d love to hear from you',
       generalInquiries: 'General Inquiries',
-      generalEmail: 'info@Seller66Tools.com',
+      generalEmail: 'info@sellertools86.com',
       partnership: 'Partnership Opportunities',
-      partnershipEmail: 'partners@Seller66Tools.com',
+      partnershipEmail: 'partners@sellertools86.com',
       feedback: 'Feedback & Suggestions',
-      feedbackEmail: 'feedback@Seller66Tools.com',
+      feedbackEmail: 'feedback@sellertools86.com',
       formTitle: 'Send Us a Message',
       nameLabel: 'Your Name',
       emailLabel: 'Your Email',
@@ -174,11 +174,11 @@ export default {
       officeHours: 'Monday - Friday: 9:00 AM - 5:00 PM EST'
     },
     careers: {
-      title: 'Careers at Seller66Tools',
+      title: 'Careers at sellertools86',
       subtitle: 'Join our team and help shape the future of e-commerce information',
-      intro: 'At Seller66Tools, we\'re always looking for talented individuals who are passionate about e-commerce and helping sellers succeed online.',
-      whyJoinTitle: 'Why Join Seller66Tools?',
-      whyJoinContent: 'Working at Seller66Tools means joining a team dedicated to providing valuable information to e-commerce entrepreneurs. We offer a collaborative work environment, competitive compensation, and the opportunity to make a real impact in the e-commerce industry.',
+      intro: 'At sellertools86, we\'re always looking for talented individuals who are passionate about e-commerce and helping sellers succeed online.',
+      whyJoinTitle: 'Why Join sellertools86?',
+      whyJoinContent: 'Working at sellertools86 means joining a team dedicated to providing valuable information to e-commerce entrepreneurs. We offer a collaborative work environment, competitive compensation, and the opportunity to make a real impact in the e-commerce industry.',
       benefitsTitle: 'Benefits & Perks',
       benefitsList: [
         'Competitive salary and benefits package',
@@ -189,7 +189,7 @@ export default {
         'Regular team events and activities'
       ],
       openPositionsTitle: 'Open Positions',
-      noOpenPositions: 'We don\'t have any open positions at the moment. Please check back later or send your resume to careers@Seller66Tools.com for future opportunities.',
+      noOpenPositions: 'We don\'t have any open positions at the moment. Please check back later or send your resume to careers@sellertools86.com for future opportunities.',
       applicationProcess: 'Application Process',
       applicationSteps: [
         'Submit your resume and cover letter',
@@ -204,7 +204,7 @@ export default {
       title: 'Privacy Policy',
       subtitle: 'How we collect, use, and protect your information',
       lastUpdated: 'Last Updated: April 15, 2023',
-      intro: 'This Privacy Policy describes how Seller66Tools ("we," "us," or "our") collects, uses, and shares information about you when you visit our website, use our services, or otherwise interact with us.',
+      intro: 'This Privacy Policy describes how sellertools86 ("we," "us," or "our") collects, uses, and shares information about you when you visit our website, use our services, or otherwise interact with us.',
       informationTitle: 'Information We Collect',
       informationContent: 'We collect information you provide directly to us, such as when you create an account, subscribe to our newsletter, contact us, or participate in surveys. This information may include your name, email address, and any other information you choose to provide.\n\nWe also automatically collect certain information when you visit our website, including your IP address, browser type, referring/exit pages, operating system, date/time stamps, and clickstream data.',
       useTitle: 'How We Use Your Information',
@@ -220,13 +220,13 @@ export default {
       changesTitle: 'Changes to This Policy',
       changesContent: 'We may update this Privacy Policy from time to time. If we make material changes, we will notify you by email or by posting a notice on our website.',
       contactTitle: 'Contact Us',
-      contactContent: 'If you have any questions or concerns about our Privacy Policy, please contact us at privacy@Seller66Tools.com.'
+      contactContent: 'If you have any questions or concerns about our Privacy Policy, please contact us at privacy@sellertools86.com.'
     },
     cookiePolicy: {
       title: 'Cookie Policy',
       subtitle: 'How we use cookies and similar technologies on our website',
       lastUpdated: 'Last Updated: April 15, 2023',
-      intro: 'This Cookie Policy explains how Seller66Tools ("we," "us," or "our") uses cookies and similar technologies when you visit our website.',
+      intro: 'This Cookie Policy explains how sellertools86 ("we," "us," or "our") uses cookies and similar technologies when you visit our website.',
       whatAreCookiesTitle: 'What Are Cookies?',
       whatAreCookiesContent: 'Cookies are small text files that are placed on your device when you visit a website. They are widely used to make websites work more efficiently and provide information to the website owners.',
       typesTitle: 'Types of Cookies We Use',
@@ -243,17 +243,17 @@ export default {
       changesTitle: 'Changes to This Policy',
       changesContent: 'We may update this Cookie Policy from time to time. If we make material changes, we will notify you by posting a notice on our website.',
       contactTitle: 'Contact Us',
-      contactContent: 'If you have any questions or concerns about our Cookie Policy, please contact us at privacy@Seller66Tools.com.'
+      contactContent: 'If you have any questions or concerns about our Cookie Policy, please contact us at privacy@sellertools86.com.'
     },
     termsConditions: {
       title: 'Terms & Conditions',
       subtitle: 'The rules and guidelines for using our website and services',
       lastUpdated: 'Last Updated: April 15, 2023',
-      intro: 'These Terms & Conditions ("Terms") govern your access to and use of the Seller66Tools website and services. By accessing or using our website, you agree to be bound by these Terms.',
+      intro: 'These Terms & Conditions ("Terms") govern your access to and use of the sellertools86 website and services. By accessing or using our website, you agree to be bound by these Terms.',
       useTitle: 'Use of Our Website',
       useContent: 'You may use our website only for lawful purposes and in accordance with these Terms. You agree not to use our website in any way that violates any applicable local, state, national, or international law or regulation.',
       intellectualPropertyTitle: 'Intellectual Property',
-      intellectualPropertyContent: 'All content, features, and functionality of our website, including but not limited to text, graphics, logos, and trademarks, are owned by Seller66Tools or its licensors and are protected by copyright, trademark, and other intellectual property laws.',
+      intellectualPropertyContent: 'All content, features, and functionality of our website, including but not limited to text, graphics, logos, and trademarks, are owned by sellertools86 or its licensors and are protected by copyright, trademark, and other intellectual property laws.',
       userContentTitle: 'User Content',
       userContentContent: 'By submitting content to our website, you grant us a non-exclusive, royalty-free, perpetual, and worldwide license to use, reproduce, modify, publish, and distribute the content for any purpose.',
       linksTitle: 'Links to Other Websites',
@@ -261,19 +261,19 @@ export default {
       disclaimerTitle: 'Disclaimer of Warranties',
       disclaimerContent: 'Our website and services are provided "as is" and "as available" without any warranties of any kind, either express or implied.',
       limitationTitle: 'Limitation of Liability',
-      limitationContent: 'In no event shall Seller66Tools be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of our website or services.',
+      limitationContent: 'In no event shall sellertools86 be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of our website or services.',
       indemnificationTitle: 'Indemnification',
-      indemnificationContent: 'You agree to indemnify and hold harmless Seller66Tools and its officers, directors, employees, and agents from any claims, liabilities, damages, losses, and expenses arising out of or in any way connected with your use of our website or services.',
+      indemnificationContent: 'You agree to indemnify and hold harmless sellertools86 and its officers, directors, employees, and agents from any claims, liabilities, damages, losses, and expenses arising out of or in any way connected with your use of our website or services.',
       changesTitle: 'Changes to These Terms',
       changesContent: 'We may update these Terms from time to time. If we make material changes, we will notify you by posting a notice on our website.',
       contactTitle: 'Contact Us',
-      contactContent: 'If you have any questions or concerns about these Terms, please contact us at terms@Seller66Tools.com.'
+      contactContent: 'If you have any questions or concerns about these Terms, please contact us at terms@sellertools86.com.'
     },
     disclosure: {
       title: 'Disclosure',
       subtitle: 'Transparency about our business relationships and content',
       lastUpdated: 'Last Updated: April 15, 2023',
-      intro: 'At Seller66Tools, we believe in transparency. This Disclosure page outlines how we make money and our relationships with the products and services we review.',
+      intro: 'At sellertools86, we believe in transparency. This Disclosure page outlines how we make money and our relationships with the products and services we review.',
       affiliateTitle: 'Affiliate Relationships',
       affiliateContent: 'We participate in affiliate programs, which means we may earn commissions when you click on links to products or services and make a purchase. This comes at no additional cost to you, but it helps us support the operation of our website.',
       editorialTitle: 'Editorial Integrity',
@@ -285,7 +285,7 @@ export default {
       compensationTitle: 'Compensation Disclosure',
       compensationContent: 'We may receive free products or services for review purposes. However, receiving free products or services does not influence our reviews or recommendations.',
       contactTitle: 'Contact Us',
-      contactContent: 'If you have any questions or concerns about our disclosure practices, please contact us at disclosure@Seller66Tools.com.'
+      contactContent: 'If you have any questions or concerns about our disclosure practices, please contact us at disclosure@sellertools86.com.'
     },
     sitemap: {
       title: 'Sitemap',
@@ -392,7 +392,7 @@ export default {
         },
         conclusion: 'By following this rigorous process, we confidently recommend the best Amazon seller tools for 2025. Every seller\'s journey is unique, so choose the tool or combination of tools that best aligns with your business model and goals. The right selection can accelerate your growth, provide competitive advantages, and simplify your path to lasting success.',
         source: 'Source:',
-        sourceLink: 'https://Seller66Tools.com/best-amazon-seller-tools/'
+        sourceLink: 'https://sellertools86.com/best-amazon-seller-tools/'
       }
     }
   },
@@ -460,3 +460,4 @@ export default {
     workTime: 'Working hours: 9:00-18:00'
   }
 } 
+

@@ -1,3 +1,4 @@
+import apiClient from '../utils/client';
 import { processResponse, handleApiError } from '../utils/response';
 
 const langMap = {
@@ -18,5 +19,12 @@ export default {
     } catch (error) {
       return Promise.reject(handleApiError(error));
     }
+  },
+
+  getAllLangPack() {
+    return apiClient.get(`/lang/getAllLangPack`)
+      .then(response => processResponse(response))
+      .catch(handleApiError);
   }
+
 }; 
