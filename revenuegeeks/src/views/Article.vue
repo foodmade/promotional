@@ -28,10 +28,10 @@
             <div v-html="article.content"></div>
           </div>
           
-          <div class="article-tags" v-if="tagList.length">
+          <!-- <div class="article-tags" v-if="tagList.length">
             <span class="tag-label">{{ $t('article.tags') }}</span>
             <span v-for="(tag, index) in tagList" :key="index" class="tag-item">{{ tag }}</span>
-          </div>
+          </div> -->
           
           <div class="article-author-box">
             <img :src="article.avatar" :alt="$t('article.authorInfo')" class="author-box-avatar" />
@@ -44,8 +44,13 @@
         
         <div class="article-sidebar">
           <div class="sidebar-widget article-toc">
-            <h3 class="widget-title">{{ $t('article.tableOfContents') }}</h3>
-            <ul v-if="articleToc.length" class="toc-list">
+            <div class="toc-header">
+              <h3 class="widget-title">{{ $t('article.tableOfContents') }}</h3>
+              <button class="toc-toggle-btn" @click="tocCollapsed = !tocCollapsed">
+                {{ tocCollapsed ? $t('article.tocShow') : $t('article.tocHide') }}
+              </button>
+            </div>
+            <ul v-if="articleToc.length && !tocCollapsed" class="toc-list">
               <li 
                 v-for="(heading, index) in articleToc" 
                 :key="index" 
@@ -61,7 +66,7 @@
                 </a>
               </li>
             </ul>
-            <p v-else class="toc-empty">{{ $t('article.noTableOfContents') }}</p>
+            <p v-else-if="!articleToc.length && !tocCollapsed" class="toc-empty">{{ $t('article.noTableOfContents') }}</p>
           </div>
           
           <div ref="stickyOffers" :class="['sidebar-widget', 'related-posts', {'sticky': isSticky}]">
@@ -82,7 +87,7 @@
               </div>
             </div>
           </div>
-          
+<!--           
           <div class="sidebar-widget subscribe-form">
             <h3 class="widget-title">{{ $t('article.subscribe.title') }}</h3>
             <p class="widget-description">{{ $t('article.subscribe.description') }}</p>
@@ -95,7 +100,7 @@
               <div v-if="subscribeSuccess" class="subscribe-message success">{{ $t('article.subscribe.success') }}</div>
               <div v-if="subscribeError" class="subscribe-message error">{{ subscribeError }}</div>
             </form>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -123,6 +128,7 @@ import AppFooter from '@/components/AppFooter.vue'
 import ArticleCard from '@/components/ArticleCard.vue'
 import api from '@/api/modules/articles'
 import commonApi from '@/api/modules/common'
+import exclusiveOffersApi from '@/api/modules/exclusiveOffers'
 
 export default {
   name: 'Article',
@@ -164,7 +170,8 @@ export default {
       offers: [],
       isSticky: false,
       stickyWidthCache: null,
-      lastWindowWidth: null
+      lastWindowWidth: null,
+      tocCollapsed: false
     }
   },
   created() {
@@ -419,29 +426,13 @@ export default {
       this.activeHeadingId = headingElements[0].id;
     },
     initOffers() {
-      // 设置默认优惠数据
-      this.offers = [
-        {
-          name: 'Helium 10',
-          logo: 'https://www.helium10.com/app/themes/helium10/assets/img/logos/logo-blue-duotone.svg',
-          link: 'https://www.helium10.com/offers/special?ref=revenuegeeks'
-        },
-        {
-          name: 'Jungle Scout',
-          logo: 'https://revenuegeeks.com/wp-content/uploads/2020/10/jungle-scout-logo-300x41.png',
-          link: 'https://www.junglescout.com/offers/discount?ref=revenuegeeks'
-        },
-        {
-          name: 'SmartScout',
-          logo: 'https://revenuegeeks.com/wp-content/uploads/2022/05/smartscout-logo-300x75.png',
-          link: 'https://smartscout.com/special-offer?ref=revenuegeeks'
-        },
-        {
-          name: 'Quartile',
-          logo: 'https://revenuegeeks.com/wp-content/uploads/2024/05/seller-assitant-new.png',
-          link: 'https://quartile.com/promo?ref=revenuegeeks'
-        }
-      ];
+      exclusiveOffersApi.getExclusiveOffers()
+        .then(data => {
+          this.offers = data.rows;
+        })
+        .catch(error => {
+          console.error('获取独家优惠失败:', error);
+        });
     },
     handleScrollForSticky() {
       // 如果页面还在加载或者DOM元素不存在，则不处理
@@ -789,6 +780,8 @@ export default {
   background-color: #f8f8f8;
   padding: 20px;
   border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .widget-title {
@@ -1048,16 +1041,17 @@ export default {
 }
 
 .toc-link {
-  color: var(--e-global-color-primary);
-  text-decoration: none;
+  color: #1976d2;
+  text-decoration: underline;
   font-size: 14px;
   display: block;
   padding: 5px 0;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  transition: color 0.2s;
 }
 
 .toc-link:hover {
-  color: var(--e-global-color-accent);
+  color: #e74c3c;
   text-decoration: underline;
 }
 
@@ -1265,13 +1259,13 @@ export default {
 .sidebar-widget.related-posts.sticky {
   position: fixed;
   top: 20px;
-  /* 移除width: inherit，改为使用固定的宽度值 */
-  /* width: inherit; */
+  width: 100%;
+  box-sizing: border-box;
   z-index: 100;
   transition: top 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transform: translateZ(0); /* 启用硬件加速 */
-  will-change: position, top; /* 提示浏览器将要改变的属性 */
+  transform: translateZ(0);
+  will-change: position, top;
 }
 
 @media (max-width: 1024px) {
@@ -1319,5 +1313,28 @@ export default {
     padding: 5px 12px;
     margin-right: 6px;
   }
+}
+
+.toc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.toc-toggle-btn {
+  background: none;
+  border: none;
+  color: #1976d2;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.toc-toggle-btn:hover {
+  background: #e3eafc;
+  color: #e74c3c;
 }
 </style> 

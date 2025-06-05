@@ -1,0 +1,91 @@
+<template>
+  <div class="app-container">
+    <el-card>
+      <div style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+        <el-button type="primary" @click="handleAdd">新增独家优惠</el-button>
+      </div>
+      <el-table :data="list" border stripe style="width: 100%">
+        <el-table-column prop="logo" label="Logo" width="100">
+          <template #default="scope">
+            <img :src="scope.row.logo" style="width:60px;height:60px;object-fit:contain;" v-if="scope.row.logo" />
+          </template>
+        </el-table-column>
+        <el-table-column prop="link" label="跳转链接" />
+        <el-table-column prop="createTime" label="创建时间" width="160" />
+        <el-table-column label="操作" width="180">
+          <template #default="scope">
+            <el-button size="small" @click="handleEdit(scope.row)">编辑</el-button>
+            <el-button size="small" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <el-pagination
+        v-model:current-page="page.pageNum"
+        v-model:page-size="page.pageSize"
+        :total="page.total"
+        @current-change="fetchList"
+        @size-change="fetchList"
+        layout="total, prev, pager, next, sizes"
+        :page-sizes="[10, 20, 50, 100]"
+        style="margin-top: 16px; text-align: right;"
+      />
+    </el-card>
+    <edit-dialog v-if="dialogVisible" :row="currentRow" @success="onDialogSuccess" @close="dialogVisible=false" />
+  </div>
+</template>
+
+<script>
+import { ElMessage, ElMessageBox } from 'element-plus'
+import ApiFactory from '@/api'
+import EditDialog from './edit.vue'
+
+export default {
+  name: 'ExclusiveOfferList',
+  components: { EditDialog },
+  data() {
+    return {
+      list: [],
+      page: { pageNum: 1, pageSize: 10, total: 0 },
+      dialogVisible: false,
+      currentRow: null
+    }
+  },
+  methods: {
+    async fetchList() {
+      const res = await ApiFactory.getExclusiveOfferApi().getList({
+        pageNum: this.page.pageNum,
+        pageSize: this.page.pageSize
+      })
+      if (res.isSuccess()) {
+        this.list = res.data
+        this.page.total = res.total
+      }
+    },
+    handleAdd() {
+      this.currentRow = null
+      this.dialogVisible = true
+    },
+    handleEdit(row) {
+      this.currentRow = { ...row }
+      this.dialogVisible = true
+    },
+    handleDelete(row) {
+      ElMessageBox.confirm('确定要删除该独家优惠吗？', '提示', { type: 'warning' })
+        .then(async () => {
+          const res = await ApiFactory.getExclusiveOfferApi().delete(row.id)
+          if (res.isSuccess()) {
+            ElMessage.success('删除成功')
+            this.fetchList()
+          }
+        })
+    },
+    onDialogSuccess() {
+      this.dialogVisible = false
+      this.fetchList()
+    }
+  },
+  mounted() {
+    this.fetchList()
+  }
+}
+</script> 

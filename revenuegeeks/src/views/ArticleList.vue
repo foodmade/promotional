@@ -108,6 +108,7 @@
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import api from '@/api/modules/articles'
+import menuApi from '@/api/modules/menu'
 
 export default {
   name: 'ArticleList',
@@ -130,7 +131,9 @@ export default {
         { label: this.$t('articles.filterReviews'), value: 'review', icon: 'el-icon-star-on' },
         { label: this.$t('articles.filterGuides'), value: 'guide', icon: 'el-icon-reading' },
         { label: this.$t('articles.filterCoupons'), value: 'coupon', icon: 'el-icon-price-tag' }
-      ]
+      ],
+      pageTitle: '',
+      pageSubtitle: ''
     }
   },
   computed: {
@@ -139,6 +142,10 @@ export default {
       console.log(`this.$route.params.slug:${this.$route.params.slug}`);
       return this.$route.params.slug || 'all';
     },
+    // 获取当前页面全路径
+    currentFullPath() {
+      return this.$route.fullPath;
+    },
     // 检查是否为搜索模式
     isSearchMode() {
       return this.$route.name === 'ArticleSearch' && this.$route.query.keyword;
@@ -146,20 +153,6 @@ export default {
     // 获取搜索关键词
     searchKeyword() {
       return this.$route.query.keyword || '';
-    },
-    // 页面标题
-    pageTitle() {
-      if (this.isSearchMode) {
-        return this.$t('articles.searchResults');
-      }
-      return this.$t(`articles.pageTypes.${this.currentSlug}.title`);
-    },
-    // 页面副标题
-    pageSubtitle() {
-      if (this.isSearchMode) {
-        return this.$t('articles.searchResultsFor', { keyword: this.searchKeyword });
-      }
-      return this.$t(`articles.pageTypes.${this.currentSlug}.subtitle`);
     },
     filteredArticles() {
       return this.articles.filter(article => {
@@ -181,6 +174,7 @@ export default {
       handler() {
         this.page = 1;
         this.articles = [];
+        this.fetchPageTitleAndSubtitle();
         this.fetchArticles();
       },
       immediate: true
@@ -189,6 +183,7 @@ export default {
   mounted() {
      // 添加直接显示文章卡片，移除延迟动画
     this.makeArticlesVisible();
+    this.fetchPageTitleAndSubtitle();
   },
   methods: {
     async fetchArticles() {
@@ -238,6 +233,17 @@ export default {
         console.error('获取文章列表失败:', error);
       } finally {
         this.isLoading = false;
+      }
+    },
+    async fetchPageTitleAndSubtitle() {
+      try {
+        const path = this.currentFullPath;
+        const res = await menuApi.getMenuTitleAndSubtitleByPath(path);
+        this.pageTitle = res.title || '';
+        this.pageSubtitle = res.subtitle || '';
+      } catch (e) {
+        this.pageTitle = '';
+        this.pageSubtitle = '';
       }
     },
     loadMoreArticles() {

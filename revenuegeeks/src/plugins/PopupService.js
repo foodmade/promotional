@@ -12,8 +12,8 @@ class PopupService {
       
       // 针对特定页面路径的弹窗配置映射
       pageMapping: {
-        '/PlatformsTools/amazon-seller-tools': 'helium10-offer',
-        '/PlatformsTools/shopify-tools': 'jungleScout-offer'
+        '/PlatformsTools/amazon-seller-tools': 'amazon-seller-offer',
+        '/PlatformsTools/eaby-seller-tools': 'ebay-seller-offer'
       }
     };
     

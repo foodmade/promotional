@@ -1,15 +1,20 @@
 <template>
   <header>
     <div class="nav-container">
-      <router-link to="/" class="logo">Seller66<span>Tools</span></router-link>
+      <router-link to="/" class="logo">
+        <img v-if="logoUrl" :src="logoUrl" alt="logo" style="height:40px;" />
+        <template v-else>
+          Seller66<span>Tools</span>
+        </template>
+      </router-link>
       
       <nav class="nav-menu">
         <!-- 渲染主导航菜单 -->
-        <template v-for="(item, index) in navigationConfig">
+        <template v-for="(item, index) in menuList">
           <!-- 如果没有子菜单 -->
           <router-link 
             v-if="!item.children" 
-            :key="index" 
+            :key="'menu-'+index" 
             :to="item.path" 
             :class="{ 'active-link': isMenuActive(item) }">
             <i v-if="item.icon" :class="item.icon"></i>
@@ -19,7 +24,7 @@
           <!-- 如果有子菜单 -->
           <el-dropdown 
             v-else 
-            :key="index"
+            :key="'dropdown-'+index"
             @command="handleMenuClick" 
             trigger="hover" 
             class="nav-dropdown">
@@ -68,7 +73,7 @@
         size="70%">
         <div class="mobile-nav-menu">
           <!-- 移动端导航菜单 -->
-          <template v-for="(item, index) in navigationConfig">
+          <template v-for="(item, index) in menuList">
             <template v-if="!item.children">
               <router-link 
                 :key="index" 
@@ -166,7 +171,8 @@
 </template>
 
 <script>
-import navigationConfig from '@/config/navigation';
+import api from '@/api/modules/menu';
+import siteInfoApi from '@/api/modules/siteInfo';
 
 export default {
   name: 'AppHeader',
@@ -176,9 +182,16 @@ export default {
       searchDialogVisible: false,
       searchQuery: '',
       currentLanguage: this.$i18n.locale,
-      navigationConfig,
-      expandedMenus: []
+      menuList: [],
+      expandedMenus: [],
+      logoUrl: ''
     }
+  },
+  created() {
+    api.getMenu().then(response => {
+      this.menuList = response.rows;
+    });
+    this.fetchLogo();
   },
   watch: {
     searchDialogVisible(visible) {
@@ -203,6 +216,14 @@ export default {
     }
   },
   methods: {
+    async fetchLogo() {
+      try {
+        const res = await siteInfoApi.getSiteLogo();
+        this.logoUrl = res.configValue;
+      } catch (e) {
+        this.logoUrl = '';
+      }
+    },
     isMenuActive(item) {
       if (item.path === this.currentPath) {
         return true;

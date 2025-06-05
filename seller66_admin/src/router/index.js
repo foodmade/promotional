@@ -102,34 +102,34 @@ export const constantRoutes = [
     ]
   },
   // 工具管理
-  {
-    path: '/tool',
-    component: Layout,
-    redirect: '/tool/list',
-    name: 'Tool',
-    meta: { title: '工具管理', icon: 'Tools' },
-    children: [
-      {
-        path: 'list',
-        component: () => import('../views/tool/list.vue'),
-        name: 'ToolList',
-        meta: { title: '工具列表', icon: 'List' }
-      },
-      {
-        path: 'create',
-        component: () => import('../views/tool/edit.vue'),
-        name: 'CreateTool',
-        meta: { title: '创建工具', icon: 'CirclePlus' }
-      },
-      {
-        path: 'edit/:id',
-        component: () => import('../views/tool/edit.vue'),
-        name: 'EditTool',
-        meta: { title: '编辑工具', noCache: true, activeMenu: '/tool/list' },
-        hidden: true
-      }
-    ]
-  },
+  // {
+  //   path: '/tool',
+  //   component: Layout,
+  //   redirect: '/tool/list',
+  //   name: 'Tool',
+  //   meta: { title: '工具管理', icon: 'Tools' },
+  //   children: [
+  //     {
+  //       path: 'list',
+  //       component: () => import('../views/tool/list.vue'),
+  //       name: 'ToolList',
+  //       meta: { title: '工具列表', icon: 'List' }
+  //     },
+  //     {
+  //       path: 'create',
+  //       component: () => import('../views/tool/edit.vue'),
+  //       name: 'CreateTool',
+  //       meta: { title: '创建工具', icon: 'CirclePlus' }
+  //     },
+  //     {
+  //       path: 'edit/:id',
+  //       component: () => import('../views/tool/edit.vue'),
+  //       name: 'EditTool',
+  //       meta: { title: '编辑工具', noCache: true, activeMenu: '/tool/list' },
+  //       hidden: true
+  //     }
+  //   ]
+  // },
   // 团队管理
   {
     path: '/author',
@@ -156,6 +156,51 @@ export const constantRoutes = [
         name: 'EditTeamMember',
         meta: { title: '编辑作者', noCache: true, activeMenu: '/team/list' },
         hidden: true
+      }
+    ]
+  },
+  {
+    path: '/sellerTools',
+    component: Layout,
+    redirect: '/sellerTools/list',
+    name: 'SellerTools',
+    meta: { title: '工具排行榜', icon: 'Star' },
+    children: [
+      {
+        path: 'list',
+        component: () => import('../views/sellerTools/list.vue'),
+        name: 'SellerToolsList',
+        meta: { title: '工具排行榜', icon: 'Star' }
+      },
+      {
+        path: 'edit',
+        component: () => import('../views/sellerTools/edit.vue'),
+        name: 'CreateSellerTool',
+        meta: { title: '新增工具', icon: 'CirclePlus' },
+        hidden: true
+      },
+      {
+        path: 'edit/:id',
+        component: () => import('../views/sellerTools/edit.vue'),
+        name: 'EditSellerTool',
+        meta: { title: '编辑工具', noCache: true, activeMenu: '/sellerTools/list' },
+        hidden: true
+      }
+    ]
+  },
+  // 客服管理
+  {
+    path: '/support',
+    component: Layout,
+    redirect: '/support/list',
+    name: 'Support',
+    meta: { title: '客服管理', icon: 'Headset' },
+    children: [
+      {
+        path: 'list',
+        component: () => import('../views/support/list.vue'),
+        name: 'SupportList',
+        meta: { title: '客服管理', icon: 'Headset' }
       }
     ]
   },
@@ -208,70 +253,57 @@ export const constantRoutes = [
   //   ]
   // },
   // 系统设置
-  {
-    path: '/system',
-    component: Layout,
-    redirect: '/system/setting',
-    name: 'System',
-    meta: { title: '系统设置', icon: 'Setting' },
-    children: [
-      {
-        path: 'setting',
-        component: () => import('../views/system/setting.vue'),
-        name: 'SystemSetting',
-        meta: { title: '网站设置', icon: 'Tools' }
-      },
-      {
-        path: 'about',
-        component: () => import('../views/system/about.vue'),
-        name: 'About',
-        meta: { title: '关于我们', icon: 'InfoFilled' }
-      }
-    ]
-  },
+  // {
+  //   path: '/system',
+  //   component: Layout,
+  //   redirect: '/system/setting',
+  //   name: 'System',
+  //   meta: { title: '系统设置', icon: 'Setting' },
+  //   children: [
+  //     {
+  //       path: 'setting',
+  //       component: () => import('../views/system/setting.vue'),
+  //       name: 'SystemSetting',
+  //       meta: { title: '网站设置', icon: 'Tools' }
+  //     },
+  //     {
+  //       path: 'about',
+  //       component: () => import('../views/system/about.vue'),
+  //       name: 'About',
+  //       meta: { title: '关于我们', icon: 'InfoFilled' }
+  //     }
+  //   ]
+  // },
   // 工具排行榜
+  // 促销弹窗管理
   {
-    path: '/sellerTools',
+    path: '/promotion',
     component: Layout,
-    redirect: '/sellerTools/list',
-    name: 'SellerTools',
-    meta: { title: '工具排行榜', icon: 'Star' },
+    redirect: '/promotion/list',
+    name: 'Promotion',
+    meta: { title: '促销弹窗', icon: 'Discount' },
     children: [
       {
         path: 'list',
-        component: () => import('../views/sellerTools/list.vue'),
-        name: 'SellerToolsList',
-        meta: { title: '工具排行榜', icon: 'Star' }
-      },
-      {
-        path: 'edit',
-        component: () => import('../views/sellerTools/edit.vue'),
-        name: 'CreateSellerTool',
-        meta: { title: '新增工具', icon: 'CirclePlus' },
-        hidden: true
-      },
-      {
-        path: 'edit/:id',
-        component: () => import('../views/sellerTools/edit.vue'),
-        name: 'EditSellerTool',
-        meta: { title: '编辑工具', noCache: true, activeMenu: '/sellerTools/list' },
-        hidden: true
+        component: () => import('../views/promotion/list.vue'),
+        name: 'PromotionPopupList',
+        meta: { title: '弹窗管理', icon: 'List' }
       }
     ]
   },
-  // 客服管理
+  // 独家优惠管理
   {
-    path: '/support',
+    path: '/exclusive',
     component: Layout,
-    redirect: '/support/list',
-    name: 'Support',
-    meta: { title: '客服管理', icon: 'Headset' },
+    redirect: '/exclusive/list',
+    name: 'Exclusive',
+    meta: { title: '独家优惠', icon: 'Star' },
     children: [
       {
         path: 'list',
-        component: () => import('../views/support/list.vue'),
-        name: 'SupportList',
-        meta: { title: '客服管理', icon: 'Headset' }
+        component: () => import('../views/exclusive/list.vue'),
+        name: 'ExclusiveOfferList',
+        meta: { title: '独家优惠列表', icon: 'List' }
       }
     ]
   },

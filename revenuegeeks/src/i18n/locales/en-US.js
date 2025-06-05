@@ -450,7 +450,9 @@ export default {
       success: 'Subscription successful! Thank you for your interest.',
       error: 'Subscription failed, please try again later.'
     },
-    moreArticles: 'More Articles'
+    moreArticles: 'More Articles',
+    tocShow: 'Show',
+    tocHide: 'Hide'
   },
   contact: {
     service: 'Contact Support',

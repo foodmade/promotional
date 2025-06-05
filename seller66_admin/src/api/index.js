@@ -8,6 +8,8 @@ import AuthorApi from './author';
 import SellerToolsApi from './sellerTools';
 import BannerApi from './banner';
 import SupportApi from './support';
+import PromotionPopupApi from './promotionPopup';
+import ExclusiveOfferApi from './exclusiveOffer';
 
 /**
  * API工厂类，用于管理不同的API实例
@@ -112,6 +114,21 @@ class ApiFactory {
     }
     return this.apiInstances.get('support');
   }
+
+  static getPromotionPopupApi() {
+    if (!this.apiInstances.has('promotionPopup')) {
+      this.apiInstances.set('promotionPopup', new PromotionPopupApi());
+    }
+    return this.apiInstances.get('promotionPopup');
+  }
+
+  static getExclusiveOfferApi() {
+    if (!this.apiInstances.has('exclusiveOffer')) {
+      this.apiInstances.set('exclusiveOffer', new ExclusiveOfferApi());
+    }
+    return this.apiInstances.get('exclusiveOffer');
+  }
+
   /**
    * 清除所有API实例
    */

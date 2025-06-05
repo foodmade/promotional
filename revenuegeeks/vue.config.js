@@ -1,9 +1,10 @@
 module.exports = {
   lintOnSave: false,
   devServer: {
+    disableHostCheck: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:3358',
+        target: 'http://localhost',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/front'

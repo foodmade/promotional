@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,6 +39,7 @@ public class ArcticleBiz extends BaseBiz<ArcticleMapper, Arcticle> {
         if(arcticle.getId() != null) {
             this.mapper.updateByPrimaryKey(arcticle);
         }else{
+            arcticle.setCreateTime(new Date());
             // 调用 mapper 方法保存文章
             this.mapper.insert(arcticle);
         }

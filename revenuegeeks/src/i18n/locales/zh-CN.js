@@ -421,7 +421,9 @@ export default {
       success: '订阅成功！感谢您的关注。',
       error: '订阅失败，请稍后重试。'
     },
-    moreArticles: '更多文章'
+    moreArticles: '更多文章',
+    tocShow: '展开',
+    tocHide: '收起'
   },
   contact: {
     service: '联系客服',

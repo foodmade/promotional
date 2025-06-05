@@ -6,7 +6,7 @@ import axios from 'axios';
  */
 export const createApiClient = () => {
   const client = axios.create({
-    baseURL: process.env.VUE_APP_API_URL || 'http://localhost:3358/api',
+    baseURL: '/api',
     timeout: 10000
   });
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seller66.admin.mapper.OfferMapper">
+  <resultMap id="BaseResultMap" type="com.seller66.admin.entity.Offer">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="popup_id" jdbcType="VARCHAR" property="popupId" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="button_text" jdbcType="VARCHAR" property="buttonText" />
+    <result column="offer_link" jdbcType="VARCHAR" property="offerLink" />
+    <result column="user_count" jdbcType="INTEGER" property="userCount" />
+    <result column="discount_amount" jdbcType="DECIMAL" property="discountAmount" />
+    <result column="original_price" jdbcType="DECIMAL" property="originalPrice" />
+    <result column="special_price" jdbcType="DECIMAL" property="specialPrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <select id="getOfferList" resultType="com.seller66.admin.dto.OfferDTO">
+    SELECT * FROM offer order by create_time
+    </select>
+</mapper>

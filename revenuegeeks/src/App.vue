@@ -91,6 +91,7 @@ export default {
     },
     
     handleRouteChange(path) {
+      console.log('路由已更改:', path);
       // 清除之前的定时器
       if (this.popupTimer) {
         clearTimeout(this.popupTimer);
