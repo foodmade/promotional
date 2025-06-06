@@ -5,10 +5,12 @@ import com.seller66.admin.mapper.LangMapper;
 import com.seller66.admin.common.model.BaseBiz;
 import com.seller66.admin.entity.Lang;
 import com.seller66.admin.utils.LangUtil;
+import com.seller66.admin.vo.LangModelVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,5 +34,26 @@ public class LangBiz extends BaseBiz<LangMapper, Lang> {
         for (Lang lang : langList) {
             updateSelectiveById(lang);
         }
+    }
+
+    public HashMap<String, Object> getAllLangsMap() {
+        List<Lang> langList = this.mapper.selectAll();
+        HashMap<String, Object> langMap = new HashMap<>();
+        for (Lang lang : langList) {
+            if (lang.getType() == null) {
+                continue;
+            }
+            langMap.put(lang.getType(), lang.getContext());
+        }
+        return langMap;
+    }
+
+    public void updateLang(LangModelVo langModelVo) {
+        updateLangByType(LangTypeEnum.ZH_CN,langModelVo.getZh());
+        updateLangByType(LangTypeEnum.EN_US,langModelVo.getEn());
+    }
+
+    public void updateLangByType(LangTypeEnum type, String value) {
+        this.mapper.updateByType(type.getType(), value);
     }
 }

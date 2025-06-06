@@ -12,6 +12,7 @@ import PromotionPopupApi from './promotionPopup';
 import ExclusiveOfferApi from './exclusiveOffer';
 import SiteInfoApi from './siteInfo';
 import MenuApi from './menu';
+import LangApi from './lang';
 
 /**
  * API工厂类，用于管理不同的API实例
@@ -145,6 +146,12 @@ class ApiFactory {
     return this.apiInstances.get('menu');
   }
 
+  static getLangApi() {
+    if (!this.apiInstances.has('lang')) {
+      this.apiInstances.set('lang', new LangApi());
+    }
+    return this.apiInstances.get('lang');
+  }
   /**
    * 清除所有API实例
    */

@@ -46,6 +46,12 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
         for (MenuDTO dto : dtoMap.values()) {
             dto.setMenuUsName(langBiz.langFindByKey(dto.getName(), LangTypeEnum.EN_US));
             dto.setMenuCnName(langBiz.langFindByKey(dto.getName(), LangTypeEnum.ZH_CN));
+            String titleResourceKey = buildTitleResourceKey(dto.getName());
+            String subTitleResourceKey = buildSubTitleResourceKey(dto.getName());
+            dto.setMenuTitleCnDesc(langBiz.langFindByKey(titleResourceKey, LangTypeEnum.ZH_CN));
+            dto.setMenuTitleUsDesc(langBiz.langFindByKey(titleResourceKey, LangTypeEnum.EN_US));
+            dto.setMenuSubTitleCnDesc(langBiz.langFindByKey(subTitleResourceKey, LangTypeEnum.ZH_CN));
+            dto.setMenuSubTitleUsDesc(langBiz.langFindByKey(subTitleResourceKey, LangTypeEnum.EN_US));
             if (dto.getParentId() == null || dto.getParentId() == 0) {
                 rootList.add(dto);
             } else {
@@ -64,7 +70,6 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
 
     public void updateMenuStatus(Long id, Boolean status) {
         this.mapper.updateMenuStatus(id, status);
-
     }
 
     public void updateEnumName(MenuDTO menu) {
@@ -77,5 +82,36 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
         }
         langBiz.setLangValue(existingMenu.getName(),menu.getMenuCnName(),LangTypeEnum.ZH_CN);
         langBiz.setLangValue(existingMenu.getName(),menu.getMenuUsName(),LangTypeEnum.EN_US);
+        String titleResourceKey = buildTitleResourceKey(existingMenu.getName());
+        String subTitleResourceKey = buildSubTitleResourceKey(existingMenu.getName());
+        //修改标题
+        langBiz.setLangValue(titleResourceKey,menu.getMenuTitleCnDesc(),LangTypeEnum.ZH_CN);
+        langBiz.setLangValue(titleResourceKey,menu.getMenuTitleUsDesc(),LangTypeEnum.EN_US);
+
+        //修改描述
+        langBiz.setLangValue(subTitleResourceKey,menu.getMenuSubTitleCnDesc(),LangTypeEnum.ZH_CN);
+        langBiz.setLangValue(subTitleResourceKey,menu.getMenuSubTitleUsDesc(),LangTypeEnum.EN_US);
+    }
+
+    public String buildTitleResourceKey(String name) {
+        if (name == null || name.isEmpty()) {
+            return null;
+        }
+        String[] parts = name.split("\\.");
+        if (parts.length < 2) {
+            return null; // 不符合预期格式
+        }
+        return "articles.pageTypes."+parts[parts.length - 1]+".title"; // 返回最后一个部分作为资源键
+    }
+
+    public String buildSubTitleResourceKey(String name) {
+        if (name == null || name.isEmpty()) {
+            return null;
+        }
+        String[] parts = name.split("\\.");
+        if (parts.length < 2) {
+            return null; // 不符合预期格式
+        }
+        return "articles.pageTypes."+parts[parts.length - 1]+".subtitle"; // 返回最后一个部分作为资源键
     }
 }

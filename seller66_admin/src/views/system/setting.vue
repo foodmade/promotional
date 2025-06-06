@@ -43,30 +43,19 @@
         </el-form>
       </el-tab-pane>
 
-      <!-- <el-tab-pane label="评论设置" name="comment">
-        <el-form
-          ref="commentFormRef"
-          :model="commentForm"
-          label-width="120px"
-          class="setting-form"
-        >
-          <el-form-item label="开启评论">
-            <el-switch v-model="commentForm.enableComment" />
-          </el-form-item>
-          <el-form-item label="评论审核">
-            <el-switch v-model="commentForm.reviewComment" />
-          </el-form-item>
-          <el-form-item label="每页显示评论数">
-            <el-input-number v-model="commentForm.commentPerPage" :min="5" :max="50" />
-          </el-form-item>
-          <el-form-item label="评论内容长度限制">
-            <el-input-number v-model="commentForm.commentMaxLength" :min="50" :max="1000" />
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="saveCommentSettings">保存设置</el-button>
-          </el-form-item>
-        </el-form>
-      </el-tab-pane> -->
+      <el-tab-pane label="语言包设置" name="comment">
+        <div class="json-editors">
+          <div class="json-editor-block">
+            <div class="json-editor-title">中文</div>
+            <JsonEditor v-model="jsonZh" height="400px" />
+          </div>
+          <div class="json-editor-block">
+            <div class="json-editor-title">英文</div>
+            <JsonEditor v-model="jsonEn" height="400px" />
+          </div>
+        </div>
+        <el-button type="primary" @click="saveJsonSettings" style="margin-top: 20px;">保存设置</el-button>
+      </el-tab-pane>
 
       <!-- <el-tab-pane label="邮件设置" name="email">
         <el-form
@@ -104,6 +93,7 @@
 import { Plus } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import ApiFactory from '@/api'
+import JsonEditor from '@/components/JsonEditor.vue'
 
 export default {
   name: 'SystemSetting',
@@ -136,6 +126,18 @@ export default {
         smtpUser: 'user@example.com',
         smtpPassword: '',
         sender: '博客管理员'
+      },
+      jsonZh: {
+        
+      },
+      jsonEn: {
+        
+      },
+      jsonEditorOptions: {
+        mode: 'tree',
+        mainMenuBar: false,
+        statusBar: false,
+        navigationBar: false
       }
     }
   },
@@ -167,19 +169,50 @@ export default {
         // 没有API时仅做本地提示
         ElMessage.success('基本设置保存成功（模拟）');
       }
+    },
+    saveJsonSettings() {
+      // 这里预留API调用，实际可打印或本地存储
+      console.log('中文JSON:', this.jsonZh);
+      console.log('英文JSON:', this.jsonEn);
+      const model = {
+        'zh':JSON.stringify(this.jsonZh), 
+        'en':JSON.stringify(this.jsonEn)
+      }
+      const langApi = ApiFactory.getLangApi();
+      langApi.updateLang(model).then(res => {
+        if (res.isSuccess && res.isSuccess()) {
+          ElMessage.success('保存成功');
+          this.getLangList();
+        } else {
+          ElMessage.error(res.message || '保存失败');
+        }
+      }).catch(() => {
+        ElMessage.error('保存失败');
+      });
+    },
+    getLangList() {
+      const langApi = ApiFactory.getLangApi();
+      langApi.getLangList().then(res => {
+        console.log(res.data);
+        this.jsonZh = JSON.parse(res.data['zh-CN']);
+        this.jsonEn = JSON.parse(res.data['en-US']);
+      });
+    },
+    getSiteInfo() {
+      const api = ApiFactory.getSiteInfoApi();
+      api.getSiteInfo().then(res => {
+        this.basicForm = res.data;
+      });
     }
   },
   components: {
-    Plus
+    Plus,
+    JsonEditor
   },
   mounted() {
     // 页面加载时获取站点配置信息
-    const api = ApiFactory.getSiteInfoApi();
-    api.getSiteInfo().then(res => {
-      if (res.isSuccess && res.isSuccess()) {
-        this.basicForm = res.data;
-      }
-    });
+    this.getSiteInfo();
+    this.getLangList();
   }
 }
 </script>
@@ -234,5 +267,24 @@ export default {
   font-size: 12px;
   color: #606266;
   margin-top: 8px;
+}
+
+.json-editors {
+  display: flex;
+  gap: 32px;
+  margin-top: 16px;
+}
+.json-editor-block {
+  flex: 1;
+  background: #fafbfc;
+  border: 1px solid #ebeef5;
+  border-radius: 6px;
+  padding: 16px;
+  min-width: 0;
+}
+.json-editor-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 15px;
 }
 </style> 

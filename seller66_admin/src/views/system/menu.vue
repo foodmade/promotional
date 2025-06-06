@@ -23,6 +23,14 @@
             <el-form :model="form" label-width="150px" size="small" class="menu-form">
                 <el-form-item label="菜单名称(中文)"><el-input v-model="form.menuCnName" /></el-form-item>
                 <el-form-item label="菜单名称(英文)"><el-input v-model="form.menuUsName" /></el-form-item>
+                <el-form-item label="标题(中文)"><el-input v-model="form.menuTitleCnDesc" /></el-form-item>
+                <el-form-item label="标题(英文)"><el-input v-model="form.menuTitleUsDesc" /></el-form-item>
+                <el-form-item label="描述内容(中文)">
+                    <el-input v-model="form.menuSubTitleCnDesc" type="textarea" :rows="4" placeholder="请输入描述内容" />
+                </el-form-item>
+                <el-form-item label="描述内容(英文)">
+                    <el-input v-model="form.menuSubTitleUsDesc" type="textarea" :rows="4" placeholder="请输入描述内容" />
+                </el-form-item>
             </el-form>
             <template #footer>
                 <el-button @click="dialogVisible = false">取消</el-button>
@@ -44,7 +52,9 @@ export default {
             dialogVisible: false,
             dialogTitle: '',
             form: {
-                id: '', parent_id: null, name: '', path: '', icon: '', sort: 0, external: 0, visible: 1, title: '', subtitle: '', menuCnName: '', menuUsName: ''
+                id: '', parent_id: null, name: '', path: '', icon: '', sort: 0, external: 0, visible: 1, title: '', 
+                subtitle: '', menuCnName: '', menuUsName: '', title: '', subtitle: '',menuTitleCnDesc: '',
+                menuTitleUsDesc: '',menuSubTitleCnDesc: '',menuSubTitleUsDesc: ''
             },
             treeProps: { label: 'name', children: 'children' }
         }
@@ -60,11 +70,6 @@ export default {
                 this.menuTree = res.data;
             }
         },
-        // openAddMenu(parent) {
-        //   this.dialogTitle = parent ? '添加子菜单' : '新增菜单';
-        //   this.form = { id: '', parent_id: parent ? parent.id : null, name: '', path: '', icon: '', sort: 0, external: 0, visible: 1, title: '', subtitle: '' };
-        //   this.dialogVisible = true;
-        // },
         openEditMenu(menu) {
             this.dialogTitle = '编辑菜单';
             this.form = { ...menu };

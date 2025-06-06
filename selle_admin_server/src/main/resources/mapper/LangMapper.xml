@@ -10,4 +10,8 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="context" jdbcType="LONGVARCHAR" property="context" />
   </resultMap>
+
+  <update id="updateByType">
+    UPDATE lang SET `context` = #{value,jdbcType=VARCHAR} WHERE `type` = #{type,jdbcType=VARCHAR}
+    </update>
 </mapper>

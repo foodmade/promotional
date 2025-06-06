@@ -85,8 +85,28 @@ public class MenuDTO extends BaseModel {
     */
     private List<MenuDTO> children;
 
+    /**
+     * 菜单英文名称
+     */
     private String menuUsName;
 
+    /**
+     * 菜单中文名称
+     */
     private String menuCnName;
+
+    /**
+     * 菜单英文标题
+     */
+    private String menuTitleUsDesc;
+
+    /**
+     * 菜单中文标题
+     */
+    private String menuTitleCnDesc;
+
+    private String menuSubTitleUsDesc;
+
+    private String menuSubTitleCnDesc;
 
 }
