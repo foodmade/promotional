@@ -3,6 +3,7 @@ package com.seller66.admin.mapper;
 import com.seller66.admin.common.rest.BaseMapper;
 import com.seller66.admin.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,5 +14,9 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface MenuMapper extends BaseMapper<Menu> {
+
+    void disableMenu(Long id);
+
+    void updateMenuStatus(@Param("id") Long id, @Param("status") Boolean status);
 
 }

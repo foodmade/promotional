@@ -19,4 +19,12 @@
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
   </resultMap>
+
+  <delete id="disableMenu">
+    UPDATE menu SET visible = 0 WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+
+  <update id="updateMenuStatus">
+    UPDATE menu SET visible = #{status,jdbcType=BOOLEAN} WHERE id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

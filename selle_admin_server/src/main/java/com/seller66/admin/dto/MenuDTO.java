@@ -85,4 +85,8 @@ public class MenuDTO extends BaseModel {
     */
     private List<MenuDTO> children;
 
+    private String menuUsName;
+
+    private String menuCnName;
+
 }

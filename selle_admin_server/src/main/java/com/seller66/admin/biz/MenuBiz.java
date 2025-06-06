@@ -1,10 +1,12 @@
 package com.seller66.admin.biz;
 
+import com.seller66.admin.common.enmu.LangTypeEnum;
 import com.seller66.admin.dto.MenuDTO;
 import com.seller66.admin.mapper.MenuMapper;
 import com.seller66.admin.common.model.BaseBiz;
 import com.seller66.admin.entity.Menu;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.seller66.admin.utils.ConvertUtil;
@@ -21,6 +23,9 @@ import java.util.HashMap;
 @Service
 @Transactional
 public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
+
+    @Autowired
+    private LangBiz langBiz;
 
     public List<MenuDTO> getMenuTree() {
         List<Menu> menuList = selectListAll();
@@ -39,6 +44,8 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
         // 2. 组装树结构
         List<MenuDTO> rootList = new ArrayList<>();
         for (MenuDTO dto : dtoMap.values()) {
+            dto.setMenuUsName(langBiz.langFindByKey(dto.getName(), LangTypeEnum.EN_US));
+            dto.setMenuCnName(langBiz.langFindByKey(dto.getName(), LangTypeEnum.ZH_CN));
             if (dto.getParentId() == null || dto.getParentId() == 0) {
                 rootList.add(dto);
             } else {
@@ -49,5 +56,26 @@ public class MenuBiz extends BaseBiz<MenuMapper, Menu> {
             }
         }
         return rootList;
+    }
+
+    public void disableMenu(Long id) {
+        this.mapper.disableMenu(id);
+    }
+
+    public void updateMenuStatus(Long id, Boolean status) {
+        this.mapper.updateMenuStatus(id, status);
+
+    }
+
+    public void updateEnumName(MenuDTO menu) {
+        if(menu.getId() == null){
+            return;
+        }
+        Menu existingMenu = this.mapper.selectByPrimaryKey(menu.getId());
+        if(menu.getId() == null){
+            return;
+        }
+        langBiz.setLangValue(existingMenu.getName(),menu.getMenuCnName(),LangTypeEnum.ZH_CN);
+        langBiz.setLangValue(existingMenu.getName(),menu.getMenuUsName(),LangTypeEnum.EN_US);
     }
 }
